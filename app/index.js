@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 require('./index.css');
+var PropTypes = require('prop-types')
 
 // state
 // lifecycle event
@@ -22,6 +23,7 @@ class MyMap extends React.Component {
     )
   }
 }
+MyMap.propTypes = { list: PropTypes.array.isRequired }
 
 class MyFilter extends React.Component {
   render() {
@@ -52,6 +54,7 @@ class MyFilter extends React.Component {
     )
   }
 }
+MyFilter.propTypes = { list: PropTypes.array.isRequired }
 
 class App extends React.Component {
   render() {
@@ -70,14 +73,13 @@ class App extends React.Component {
   }
 }
 
-//<MyMap list={['Tyler S.', 'Mikenzi', 'Ryan', 'Michael']} />
 {AddTen(2,3,4)}
 function AddTen(n1,n2,n3) {
   var numbers = [n1,n2,n3];
   var numbersPlusTen = numbers.map(function (num) {
     return num + 10;
   });
-  console.log(numbersPlusTen) // [11, 12, 13]
+  console.log(numbersPlusTen)
 }
 
 {ListFriends('Ean Hi', 'Murphy Hi', 'Merrick Hi')}
@@ -86,7 +88,7 @@ function ListFriends(f1,f2,f3){
   var listItems = friends.map(function(friend){
     return "<li> " + friend + "</li>";
   });
-  console.log(listItems); // ["<li> Ean Platter </li>", "<li> Murphy Randall</li>", "<li> Merrick Christensen </li>"];
+  console.log(listItems);
 }
 
 {FilterFriends('Ean', 'Tyler', 'Mikenzi', 'Eric', 'Jessica')}
@@ -95,9 +97,8 @@ function FilterFriends(f1,f2,f3,f4,f5){
   var newFriends = friends.filter(function (friend) {
     return friend[0] === 'E'
   });
-  console.log(newFriends) // ['Ean', 'Eric']
+  console.log(newFriends)
 }
-
 
 ReactDOM.render(
   <App />,
