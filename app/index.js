@@ -6,14 +6,71 @@ require('./index.css');
 // lifecycle event
 // UI
 
-class App extends React.Component {
+class MyMap extends React.Component {
   render() {
     return (
-      <div>Hello World!</div>
+      <div>
+        <h1>Map...</h1>
+      <ul>
+        {
+          this.props.list.map(function(user) {
+            return <li>{user}</li>
+          })
+        }
+      </ul>
+    </div>
     )
   }
 }
 
+class MyFilter extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Filter...</h1>
+        <h2>Friends</h2>
+        <ul>
+          {
+            this.props.list.filter(function (user) {
+                return user.friend === true
+              }).map(function(user) {
+                return <li>{user.name}</li>
+            })
+          }
+        </ul>
+        <h2>Non-Friends</h2>
+        <ul>
+          {
+            this.props.list.filter(function (user) {
+                return user.friend === false
+              }).map(function(user) {
+                return <li>{user.name}</li>
+            })
+          }
+        </ul>
+      </div>
+    )
+  }
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <MyMap list={['George', 'Mary', 'Rudolph']} />
+        <MyFilter list={[
+          { name: 'Tyler M.', friend: true },
+          { name: 'Ryan', friend: true },
+          { name: 'Michael', friend: false },
+          { name: 'Mikenzi', friend: false },
+          { name: 'Jessica', friend: true },
+          { name: 'Dan', friend: false } ]} />
+      </div>
+    )
+  }
+}
+
+//<MyMap list={['Tyler S.', 'Mikenzi', 'Ryan', 'Michael']} />
 {AddTen(2,3,4)}
 function AddTen(n1,n2,n3) {
   var numbers = [n1,n2,n3];
