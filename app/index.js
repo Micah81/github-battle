@@ -49,8 +49,42 @@ var you = {
 sayNameMixin(you) // passes [you] into the 'sayNameMixin' function (but not to the nested function!)
 //me.sayName();
 you.sayName(); // invokes the nested function, 'sayName', by specifying the name of the object that can access it (refer to the nested function, which calls obj.sayName)
+/// END IMPLICIT BINDING ////
 
-///
+//EXPLICIT BINDING
+// call, apply, bind
+
+var sayName = function(){
+  console.log('My name is ' + this.name)
+}
+
+var stacey = {
+  name: 'Stacey',
+  age: 34
+}
+
+var languages = ['JavaScript', 'Ruby', 'Python'];
+
+//sayName.call(stacey);
+// this method explicity states what the 'this' keyword is.
+// In this case, the 'this' keyword is [stacey].
+// 'stacey' is the first argument in the .call() method.
+// The first argument is the 'this' reference;
+// the other arguments are passed as arguments to the 'this' object.
+
+var sayMore = function(lang1, lang2, lang3){
+  console.log('My name is ' + this.name + ' and I prefer coding in ' + lang1 + ', ' + lang2 + ', and ' + lang3 + '.')
+}
+
+sayMore.call(stacey, languages[0], languages[2], languages[1])
+
+sayMore.apply(stacey, languages) // COOL!
+
+// .bind will return a new function instead of calling a function ...
+var newFn = sayMore.bind(stacey, languages[0], languages[2], languages[1]);
+console.log('HERE');
+newFn();
+
 
 
 
