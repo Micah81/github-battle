@@ -7,6 +7,61 @@ var PropTypes = require('prop-types')
 // lifecycle event
 // UI
 
+/*
+Learning about the "this" keyword
+  - Implicit Binding
+  - Explicit Binding
+  - new Binding
+  - window Binding
+*/
+// IMPLICIT BINDING
+// Where is this function invoked?
+var sayName = function(name) {
+  console.log('Hello, ' + name)
+}
+//sayName('Micah')
+
+var me = {
+  name: 'Micah',
+  age: 37,
+  sayName: function() {
+    console.log(this.name);
+  }
+}
+// 1. How would you call the function?
+//me.sayName()
+// 2. What is to the left of the function name?
+// me; Then 'me' is where this function is invoked. So,
+// within this nested function, the "this" keyword = the 'me' object.
+
+var sayNameMixin = function(obj){
+  obj.sayName = function(){
+    console.log(this.name);
+  }
+}
+
+var you = {
+  name: 'Joey',
+  age: 21
+}
+
+//sayNameMixin(me)
+sayNameMixin(you) // passes [you] into the 'sayNameMixin' function (but not to the nested function!)
+//me.sayName();
+you.sayName(); // invokes the nested function, 'sayName', by specifying the name of the object that can access it (refer to the nested function, which calls obj.sayName)
+
+///
+
+
+
+
+
+
+
+
+///////////// end 'this' keyword learning ///////////////////////
+
+
 class MyMap extends React.Component {
   render() {
     return (
