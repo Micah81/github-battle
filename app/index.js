@@ -86,10 +86,20 @@ console.log('HERE');
 newFn();
 
 
+// NEW BINDING
+var Animal = function(color, name, type){
+  this.color = color;
+  this.name = name;
+  this.type = type;
+  console.log('I am a '+this.type)
+}
 
+var zebra = new Animal('black and white', 'Malachi', 'Zebra');
+//  oh .. duh ... 'New binding' is simply using this 'new' function.
+/////// END NEW BINDING
 
-
-
+// WINDOW BINDING
+// If 'this' is undefined, it will default to the window object; unless you specify 'strict', in which case it remains undefined.
 
 
 
